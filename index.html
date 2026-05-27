@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Decime Tortuga - Tu Pet Shop de confianza. Alimentos, ropa, juguetes y accesorios para mascotas.">
+    <title>Decime Tortuga | Pet Shop</title>
+    <!-- Google Fonts: Modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar">
+        <div class="logo-container">
+            <h1 class="logo">Decime <span class="highlight">Tortuga</span></h1>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#" class="nav-item active" data-category="all">Inicio</a>
+            <div class="dropdown">
+                <a href="#" class="nav-item" data-category="dogs">Perros <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#" data-subcategory="adults">Adultos</a>
+                    <a href="#" data-subcategory="puppies">Cachorros</a>
+                    <a href="#" data-subcategory="small-breeds">Razas Pequeñas</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="nav-item" data-category="cats">Gatos <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#" data-subcategory="adults">Adultos</a>
+                    <a href="#" data-subcategory="puppies">Cachorros</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item" data-category="other">Otras Mascotas</a>
+            <div class="dropdown">
+                <a href="#" class="nav-item" data-category="accessories">Accesorios <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#" data-subcategory="clothing">Indumentaria</a>
+                    <a href="#" data-subcategory="toys">Juguetes</a>
+                    <a href="#" data-subcategory="grooming">Higiene y Estética</a>
+                    <a href="#" data-subcategory="travel">Viajes y Camas</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="icon-btn" id="loginBtn" aria-label="Registrarse / Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <button class="icon-btn cart-btn" id="cartBtn" aria-label="Ver Carrito">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Todo para tu mejor amigo</h2>
+            <p>Alimentos, accesorios y más, con entregas de 24 a 48 hs posteriores al encargo.</p>
+            <button class="primary-btn" id="shopNowBtn">Comprar Ahora</button>
+        </div>
+    </section>
+
+    <!-- Main Content: Products -->
+    <main class="container">
+        <div class="section-header">
+            <h3 id="categoryTitle">Nuestros Productos</h3>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar productos...">
+            </div>
+        </div>
+        
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be dynamically injected here by app.js -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Decime Tortuga</h3>
+                <p>Tu Pet Shop online. Calidad y amor para tus mascotas.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces</h4>
+                <a href="#">Sobre Nosotros</a>
+                <a href="#">Contacto</a>
+                <a href="#">Términos y Condiciones</a>
+            </div>
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Decime Tortuga. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal/Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-btn" id="closeCartBtn"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Cart items injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalValue">$0.00</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Registration/Login Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeAuthBtn"><i class="fa-solid fa-times"></i></button>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-target="loginForm">Iniciar Sesión</button>
+                <button class="tab-btn" data-target="registerForm">Registrarse</button>
+            </div>
+            
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="primary-btn full-width">Ingresar</button>
+            </form>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regName">Nombre Completo</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Contraseña</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <button type="submit" class="primary-btn full-width">Crear Cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
